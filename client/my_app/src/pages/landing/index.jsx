@@ -1,8 +1,11 @@
 // src/App.jsx
 import React from "react";
 import styles from "./Landing.module.css";
+import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
+  const navigate = useNavigate();
+
   const currentYear = new Date().getFullYear();
 
   const scrollToSection = (id) => {
@@ -20,11 +23,11 @@ function LandingPage() {
   };
 
   const handleGetStarted = () => {
-    scrollToSection("cta"); // scroll to final CTA section
+    navigate("/signup");
   };
 
   const handleLogin = () => {
-    scrollToSection("cta"); // same section for now, you can change later
+    navigate("/login");
   };
 
   return (
