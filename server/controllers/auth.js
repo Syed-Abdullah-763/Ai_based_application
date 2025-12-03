@@ -71,7 +71,7 @@ export const loginController = async (req, res) => {
 
     const user = await userModel.findOne({ email });
 
-    if (!email) {
+    if (!user) {
       return res.status(400).json({
         message: "Invalid Email or Password",
         status: false,
@@ -368,7 +368,7 @@ export const changePasswordController = async (req, res) => {
       });
     }
 
-    const hashPassword = await bcrypt(newPassword, 10);
+    const hashPassword = await bcrypt.hash(newPassword, 10);
 
     await userModel.findByIdAndDelete(verifyToken._id, {
       password: hashPassword,
