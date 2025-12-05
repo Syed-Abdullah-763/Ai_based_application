@@ -39,7 +39,7 @@ function LoginPage() {
   };
 
   const handleForgotPassword = () => {
-    console.log("Forgot password clicked");
+    navigate("/forget-password");
   };
 
   const handleGoHome = () => {

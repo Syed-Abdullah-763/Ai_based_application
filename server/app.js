@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 import { dbConnect } from "./config/db.js";
 import authRoute from "./routes/auth.js";
 import userRoute from "./routes/user.js";
-import { limiter } from "./config/rateLimit.js";
 import imageRoute from "./routes/image.js";
 
 dotenv.config();
@@ -21,9 +20,9 @@ app.use(cors());
 dbConnect();
 
 // Routes
-app.use("/api/auth", limiter, authRoute);
-app.use("/api", limiter, userRoute);
-app.use("/api", limiter, imageRoute);
+app.use("/api/auth", authRoute);
+app.use("/api", userRoute);
+app.use("/api", imageRoute);
 
 app.get("/", (req, res) => {
   res.json({
