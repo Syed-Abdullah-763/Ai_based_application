@@ -22,8 +22,8 @@ export default function OtpVerify() {
     const email = location?.state?.email;
     const token = location?.state?.token;
 
-    if (!email || !token) {
-      setMessage("Missing email or token. Please login again.");
+    if (!email) {
+      setMessage("Missing email. Please login again.");
       return;
     }
 
@@ -38,15 +38,21 @@ export default function OtpVerify() {
         }
       );
 
-      setMessage(response.data.message || "OTP verified successfully!");
+      setMessage(otpResponse.data.message || "OTP verified successfully!");
 
-      localStorage.setItem("token", token);
-      navigate("/profile");
+      alert(message);
+
+      if (!token) {
+        navigate("/login");
+      } else {
+        localStorage.setItem("token", token);
+        navigate("/profile");
+      }
     } catch (err) {
       const errMsg =
         err?.response?.data?.message ||
         "Failed to verify OTP. Please try again.";
-      alert(errMsg);
+      alert(err);
       setMessage(errMsg);
     } finally {
       setLoading(false);
@@ -96,7 +102,7 @@ export default function OtpVerify() {
             type="text"
             maxLength={6}
             value={otp}
-            onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
+            onChange={(e) => setOtp(e.target.value)}
             className={styles.input}
             placeholder="Enter 6-digit OTP"
           />

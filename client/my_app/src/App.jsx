@@ -9,6 +9,8 @@ import SignupPage from "./pages/signup";
 import OtpVerify from "./pages/otp";
 import ForgotPassword from "./pages/forgetPassword";
 import ChangePassword from "./pages/changePassword";
+import RequestOtp from "./pages/requestOtp";
+import Dashboard from "./pages/dashboard";
 
 function App() {
   return (
@@ -18,12 +20,15 @@ function App() {
           <Route index element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/request-otp" element={<RequestOtp />} />
           <Route path="/otp-verification" element={<OtpVerify />} />
           <Route path="/forget-password" element={<ForgotPassword />} />
           <Route path="/change-password" element={<ChangePassword />} />
         </Route>
 
-        <Route element={<PrivateRoute />}></Route>
+        <Route element={<PrivateRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
 
         <Route path="*" element={<NotFound />} />
       </Routes>

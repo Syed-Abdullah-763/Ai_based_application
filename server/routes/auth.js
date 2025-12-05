@@ -16,7 +16,7 @@ authRoute.post("/signup", limiter, signupController);
 authRoute.post("/login", limiter, loginController);
 
 // otp
-authRoute.post("/verify-otp", limiter, verifyOtpController);
+authRoute.post("/verify-otp", verifyOtpController);
 authRoute.post("/resend-otp", limiter, resendOtpController);
 
 // password

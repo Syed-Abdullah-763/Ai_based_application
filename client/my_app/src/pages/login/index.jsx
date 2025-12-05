@@ -1,4 +1,3 @@
-// src/Login.jsx
 import React, { useState } from "react";
 import styles from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
@@ -30,9 +29,9 @@ function LoginPage() {
       );
 
       localStorage.setItem("token", response);
-      navigate("/profile", { replace: true });
+      navigate("/dashboard", { replace: true });
     } catch (err) {
-      alert(err);
+      alert(err?.response?.data?.message);
     } finally {
       setSubmitting(false);
     }
@@ -48,6 +47,10 @@ function LoginPage() {
 
   const handleGetStarted = () => {
     navigate("/signup");
+  };
+
+  const handleVerifyAccount = () => {
+    navigate("/request-otp");
   };
 
   return (
@@ -145,6 +148,17 @@ function LoginPage() {
               onClick={handleGetStarted}
             >
               Get Started
+            </button>
+          </div>
+
+          <div className={styles.footerText}>
+            <span>Email isn’t verified?</span>
+            <button
+              type="button"
+              className={styles.linkBtnStrong}
+              onClick={handleVerifyAccount}
+            >
+              Verify Email
             </button>
           </div>
 

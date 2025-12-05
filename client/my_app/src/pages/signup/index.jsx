@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import styles from "./signup.module.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function SignupPage() {
   const [form, setForm] = useState({
@@ -41,7 +42,7 @@ function SignupPage() {
         },
       });
     } catch (err) {
-      alert(err.response.data.message);
+      alert(err?.response?.data?.message);
     } finally {
       setSubmitting(false);
     }
@@ -92,8 +93,8 @@ function SignupPage() {
                 Full name
               </label>
               <input
-                id="fullName"
-                name="fullName"
+                id="name"
+                name="name"
                 type="text"
                 className={styles.input}
                 placeholder="John Doe"
